@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .flex {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        background-color: rgba(10, 46, 75, 0.918);
+    }
+    .key {
+        font-size: 2rem;
+        margin-left: 2%;
+        width: 100px;
+        height: 100px;
+        text-transform: uppercase;
+        border: 1px solid black;
+        transition: all 0.07s ease;
+    }
+    .playing {
+        transform: scale(1.5);
+        border-color: brown;
+    }
+</style>
+
+<body>
+    <div class="flex">
+        <button class="key" data-key="65">a</button>
+        <button class="key" data-key="83">s</button>
+        <button class="key" data-key="68">d</button>
+        <button class="key" data-key="70">f</button>
+        <button class="key" data-key="71">g</button>
+    </div>
+
+    <audio data-key="65" src="audio/musical001.wav"></audio>
+    <audio data-key="83" src="audio/musical002.wav"></audio>
+    <audio data-key="68" src="audio/musical003.wav"></audio>
+    <audio data-key="70" src="audio/musical004.wav"></audio>
+    <audio data-key="71" src="audio/musical005.wav"></audio>
+
+</body>
+<script>
+
+    function playSound(e) {
+        const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        if (!audio) return;
+
+        key.classList.add('playing');
+        audio.currentTime = 0;
+        audio.play();
+    }
+
+    function removeTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        e.target.classList.remove('playing');
+    }
+
+
+    const keys = Array.from(document.querySelectorAll('.key'));
+    keys.forEach(x => x.addEventListener('transitionend', removeTransition));
+    
+    window.addEventListener('keydown', playSound);
+    
+</script>
+
+</html>
