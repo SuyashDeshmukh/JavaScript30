@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Variables in JS</title>
+</head>
+<style>
+    :root {
+        --base : #112233;
+        --spacing : 10px;
+        --blur : 10px;
+    }
+    body {
+        background-color: rgb(17, 20, 54);
+    }
+    h1,.image {
+        text-align: center;
+        color: cornflowerblue;
+    }
+    .text {
+        color: cornflowerblue;
+        font-size: 1.5em;
+        padding: 10px;
+    }
+    img {
+        margin-top: 20px;
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+    }
+    .controls {
+        text-align: center;
+    }
+</style>
+<body>
+    <h1  >CSS Variables with JavaScript</h1>
+    <div class="controls">
+        <label class="text" for="Spacing">Spacing</label>
+        <input type="range" name="spacing" min="0" max="200" value="0" data-unit="px">
+        
+        <label class="text" for="blur">Blur</label>
+        <input type="range" name="blur" min="0" max="100" value="10" data-unit="px">
+
+        <label class="text" for="color">Color</label>
+        <input type="color" name="base" value="#112233">
+    </div>
+    <div class="image">
+        <img src="https://images.pexels.com/photos/951076/pexels-photo-951076.jpeg" alt="image" style="width: 1000px;">
+    </div>
+    <script>
+        let inputs = document.querySelectorAll('.controls input');
+        inputs.forEach(input => {
+            input.addEventListener('change',updatevalue);
+            input.addEventListener('mousemove',updatevalue);
+        });
+
+        function updatevalue() {
+            const suffix = this.dataset.unit || '';
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+        }
+    </script>
+</body>
+</html>
