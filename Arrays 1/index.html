@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const inventors = [
+        {first:'John', last:'Snow', year:1990, passed: 2020},
+        {first:'Max', last:'Black', year:1590, passed: 1620},
+        {first:'Blake', last:'Johnson', year:1790, passed: 1860},
+        {first:'Tom', last:'Lim', year:1800, passed: 1910},
+        {first:'Derek', last:'Blick', year:1690, passed: 1741},
+    ];
+
+    const people = [
+        'Blake, John','Blick, Tom','Norton, Greg', 'Marus, Steve', 'Mackdon, Daniel',
+        'Blaire, Jack','Bryan, Jim','Jachary, Jordan', 'Marcus, Dan', 'Jeff, Diego',
+        'Doherty, Sam','Artick, Bill','Dacker, Jimmy', 'Prioter, Matt', 'Nigell, Domino',
+    ];
+
+    // 1.Array.prototype.filter()
+    // Filter the list of inventors for those who were born in 1500's.
+    const fifties = inventors.filter(invetor => invetor.year >= 1500 & invetor.year <1600);
+    console.table(fifties);
+
+    // 2.Array.prototype.map()
+    // Give an array of inventors first and last name
+    const names = inventors.map(inventor => `${inventor.first}  ${inventor.last}`);
+    console.log(names);
+
+    // 3.Array.prototype.sort()
+    // Sort the inventors by birthdate, oldest to youngest
+    const birthdates = inventors.sort((a,b) => {
+        return a.year > b.year ? 1:-1;
+    });
+    console.table(birthdates);
+
+    // 4.Array.prototype.reduce()
+    // How many years did all the inventors live?
+    const sum = inventors.reduce((total,item) => {
+        return total+ (item.passed - item.year);
+    },0);
+    console.log(sum);
+
+    // 5.Sort the inventors by the years lived
+    const sorted = inventors.sort((a,b) => {
+        return (a.passed - a.year) > (b.passed - b.year) ? 1:-1;
+    });
+    console.table(sorted);
+
+    
+
+</script>
+</html>
