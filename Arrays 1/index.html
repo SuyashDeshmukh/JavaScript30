@@ -54,6 +54,19 @@
     });
     console.table(sorted);
 
+    // 6. Get list of boulevards in Paris
+    const category = document.querySelector('.mw-category');
+    const links = Array.from(category.querySelectorAll('a'));
+    console.log(links);
+    const de = links
+                .map(link => link.textContent)
+                .filter(street => street.includes('de'));
+    console.log(de);
+
+    // 7. Sort People by last name
+    const list = people.sort((a,b) => {
+
+    });
     
 
 </script>
