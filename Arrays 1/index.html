@@ -55,19 +55,40 @@
     console.table(sorted);
 
     // 6. Get list of boulevards in Paris
-    const category = document.querySelector('.mw-category');
-    const links = Array.from(category.querySelectorAll('a'));
-    console.log(links);
-    const de = links
-                .map(link => link.textContent)
-                .filter(street => street.includes('de'));
-    console.log(de);
+    // const category = document.querySelector('.mw-category');
+    // const links = Array.from(category.querySelectorAll('a'));
+    // console.log(links);
+    // const de = links
+    //             .map(link => link.textContent)
+    //             .filter(street => street.includes('de'));
+    // console.log(de);
 
     // 7. Sort People by last name
     const list = people.sort((a,b) => {
+        const afirst = a.split(', ')[0];
+        const asecond = a.split(', ')[1];
 
+        const bfirst = b.split(', ')[0];
+        const bsecond = b.split(', ')[1];
+
+        return afirst > bfirst ? 1 : -1;
     });
+
+    console.log(list);
     
+    // 8.Sum up instances using reduce
+    const transp = ['car', 'car', 'truck', 'truck', 'walk', 'car', 'bus', 'walk', 'truck',
+    'car', 'bus', 'walk'];
+    
+    const sumobj = transp.reduce((sum,item) => {
+        if(!sum[item]) {
+            sum[item] = 0
+        }
+        sum[item]++;
+        return sum;
+    },{});
+    
+    console.log(sumobj);
 
 </script>
 </html>
