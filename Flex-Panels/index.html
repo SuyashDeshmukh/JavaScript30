@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+
+        }
+    .panels {
+        display: flex;
+        width:100%;
+    }
+    .panel {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        height: 100vh;
+        transition:
+            flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11);
+    }
+    .panel.open {
+        flex:5;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="panels">
+        <div class="panel" style="background:url('img/img1.jpg') center no-repeat ;background-size: cover;">
+            <div></div>
+        </div>
+        <div class="panel" style="background:url('img/img2.jpg') center no-repeat; background-size: cover;">
+            
+        </div>
+        <div class="panel" style="background:url('img/img3.jpg') center no-repeat; background-size: cover;">
+            
+        </div>
+        <div class="panel" style="background:url('img/img4.jpg') center no-repeat; background-size: cover;">
+            
+        </div>
+    </div>
+    <script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+        this.classList.toggle('open');
+    }
+    panels.forEach(panel => panel.addEventListener('click',toggleOpen));
+    </script>
+</body>
+</html>
