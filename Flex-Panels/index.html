@@ -8,7 +8,7 @@
     <style>
         body{
             margin:0;
-
+            overflow: hidden;
         }
     .panels {
         display: flex;
@@ -25,22 +25,49 @@
     .panel.open {
         flex:5;
     }
+    .panel > * {
+        text-transform: capitalize;
+        color: rgba(63, 61, 66, 0.897);
+        font-size: 40px;
+        /* text-align: center; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+    .panel > *:first-child {
+        transform: translateY(-100%);
+    }
+    .panel > *:last-child {
+        transform: translateY(100%);
+    }
+    .open-active {
+        font-size: 80px;
+    }
 
     </style>
 </head>
 <body>
     <div class="panels">
         <div class="panel" style="background:url('img/img1.jpg') center no-repeat ;background-size: cover;">
-            <div></div>
+            <div>Hey</div>
+            <div>Let's</div>
+            <div>Explore</div>
         </div>
         <div class="panel" style="background:url('img/img2.jpg') center no-repeat; background-size: cover;">
-            
+            <div>Give</div>
+            <div>Take</div>
+            <div>Receive</div>
         </div>
         <div class="panel" style="background:url('img/img3.jpg') center no-repeat; background-size: cover;">
-            
+            <div>Experience</div>
+            <div>It</div>
+            <div>All</div>
         </div>
         <div class="panel" style="background:url('img/img4.jpg') center no-repeat; background-size: cover;">
-            
+            <div>Hey</div>
+            <div>Let's</div>
+            <div>Explore</div>
         </div>
     </div>
     <script>
@@ -49,7 +76,16 @@
     function toggleOpen() {
         this.classList.toggle('open');
     }
+
+    function toggleActive(e) {
+        
+        if(e.propertyName == 'flex-grow') {
+        console.log(e);
+            this.classList.toggle('open-active');
+        }
+    }
     panels.forEach(panel => panel.addEventListener('click',toggleOpen));
+    panels.forEach(panel => panel.addEventListener('click',toggleActive));
     </script>
 </body>
 </html>
